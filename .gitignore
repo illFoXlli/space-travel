@@ -1,0 +1,30 @@
+# gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# intellij
+.idea/
+*.iml
+out/
+
+# hibernate config
+hibernate.cfg.xml
+
+# h2 database
+*.mv.db
+*.trace.db
+*.h2.db
+db/
+
+# logs
+*.log
+logs/
+
+# temp
+tmp/
+temp/
+
+# os
+.DS_Store
+Thumbs.db
