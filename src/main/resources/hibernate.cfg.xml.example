@@ -1,6 +1,6 @@
 <!DOCTYPE hibernate-configuration PUBLIC
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+        "https://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
 
@@ -19,9 +19,6 @@
         <!-- REPLACE WITH YOUR OWN -->
         <property name="hibernate.connection.username">YOUR_USERNAME</property>
         <property name="hibernate.connection.password">YOUR_PASSWORD</property>
-
-        <!-- DIALECT -->
-        <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
 
         <!-- DEBUG -->
         <property name="hibernate.show_sql">true</property>
