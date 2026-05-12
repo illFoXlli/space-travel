@@ -10,11 +10,24 @@
 - Hibernate-сутності:
   - `Client`
   - `Planet`
-- CRUD-сервіси:
-  - `ClientCrudService`
-  - `PlanetCrudService`
-- JUnit-тести для перевірки CRUD-операцій
-- Тестовий запуск через `Main`, який виконує create/read/update/delete для `Client` і `Planet`
+- DAO-рівень:
+  - `ClientDaoService` / `ClientDaoServiceImpl`
+  - `PlanetDaoService` / `PlanetDaoServiceImpl`
+- Service-рівень:
+  - `ClientService` / `ClientServiceImpl`
+  - `PlanetService` / `PlanetServiceImpl`
+- Валідація даних у service-рівні
+- Обробка помилок транзакцій з `rollback()` у DAO-рівні
+- JUnit-тести для перевірки CRUD-операцій і базової валідації
+- Тестовий запуск через `Main`, який демонструє create/read/update/delete для `Client` і `Planet`
+
+## Структура проєкту
+
+- `config` - конфігурація Hibernate та ініціалізація Flyway
+- `entity` - Hibernate-сутності
+- `dao` - робота з БД через Hibernate
+- `service` - бізнес-логіка та валідація
+- `test` - JUnit-тести
 
 ## Структура БД
 
@@ -25,6 +38,10 @@
 ### `planet`
 - `id` - `VARCHAR(20)`, primary key
 - `name` - `VARCHAR(500)`, not null
+
+Додаткові обмеження:
+- `planet.id` може містити тільки великі латинські літери та цифри
+- `from_planet_id` і `to_planet_id` у `ticket` не можуть бути однаковими
 
 ### `ticket`
 - `id` - `BIGINT`, primary key, auto increment
@@ -44,7 +61,7 @@
 
 ## Запуск
 
-### 1. Запуск перевірки
+### 1. Запуск тестів
 
 ```bash
 ./gradlew test
@@ -53,6 +70,18 @@
 Тести перевіряють:
 - створення, читання, оновлення і видалення `Client`
 - створення, читання, оновлення і видалення `Planet`
+- валідацію імені `Client`
+- валідацію `Planet.id`
+
+Щоб запустити один конкретний тестовий клас:
+
+```bash
+./gradlew test --tests "com.fox.service.ClientServiceImplTest"
+```
+
+```bash
+./gradlew test --tests "com.fox.service.PlanetServiceImplTest"
+```
 
 ### 2. Запуск застосунку
 
@@ -63,7 +92,7 @@
 Під час запуску:
 - Flyway перевіряє та застосовує міграції
 - Hibernate підключається до локальної H2-бази
-- У `Main` виконується демонстрація CRUD-операцій
+- У `Main` створюються DAO та service-обʼєкти, після чого виконується демонстрація CRUD-операцій
 
 ## Файли конфігурації
 
@@ -74,9 +103,4 @@
 
 [GitHub repository](https://github.com/illFoXlli/space-travel)
 
-## Що ще можна покращити
 
-- додати окремі автоматичні тести замість перевірки тільки через `Main`
-- додати сутність `Ticket`, якщо це знадобиться в наступних завданнях
-- посилити SQL-обмеження для `planet.id` відповідно до формату з умови
-- прибрати технічні Hibernate warnings, які не ламають запуск, але роблять конфіг охайнішим
