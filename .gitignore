@@ -9,7 +9,7 @@ build/
 out/
 
 # hibernate config
-hibernate.cfg.xml
+# hibernate.cfg.xml
 
 # h2 database
 *.mv.db
