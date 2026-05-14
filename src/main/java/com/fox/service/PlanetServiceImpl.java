@@ -56,11 +56,15 @@ public class PlanetServiceImpl implements PlanetService {
 
         String normalizedId = id.trim();
         if (normalizedId.isEmpty() || normalizedId.length() > MAX_ID_LENGTH) {
-            throw new IllegalArgumentException("Planet id length must be between 1 and " + MAX_ID_LENGTH);
+            throw new IllegalArgumentException(
+                    "Planet id length must be between 1 and " + MAX_ID_LENGTH
+            );
         }
 
         if (!normalizedId.matches(PLANET_ID_PATTERN)) {
-            throw new IllegalArgumentException("Planet id must contain only uppercase Latin letters and digits");
+            throw new IllegalArgumentException(
+                    "Planet id must contain only uppercase Latin letters and digits"
+            );
         }
 
         return normalizedId;
@@ -72,9 +76,13 @@ public class PlanetServiceImpl implements PlanetService {
         }
 
         String normalizedName = name.trim();
-        if (normalizedName.length() < MIN_NAME_LENGTH || normalizedName.length() > MAX_NAME_LENGTH) {
+        if (normalizedName.length() < MIN_NAME_LENGTH
+                || normalizedName.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(
-                    "Planet name length must be between " + MIN_NAME_LENGTH + " and " + MAX_NAME_LENGTH
+                    "Planet name length must be between "
+                            + MIN_NAME_LENGTH
+                            + " and "
+                            + MAX_NAME_LENGTH
             );
         }
 

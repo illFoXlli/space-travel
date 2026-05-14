@@ -1,20 +1,19 @@
 package com.fox.service;
 
-import com.fox.config.DatabaseInitService;
-import com.fox.dao.ClientDaoService;
-import com.fox.dao.ClientDaoServiceImpl;
-import com.fox.entity.Client;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import com.fox.config.DatabaseInitService;
+import com.fox.dao.ClientDaoService;
+import com.fox.dao.ClientDaoServiceImpl;
+import com.fox.entity.Client;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 class ClientServiceImplTest {
 

@@ -1,20 +1,19 @@
 package com.fox.service;
 
-import com.fox.config.DatabaseInitService;
-import com.fox.dao.PlanetDaoService;
-import com.fox.dao.PlanetDaoServiceImpl;
-import com.fox.entity.Planet;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import com.fox.config.DatabaseInitService;
+import com.fox.dao.PlanetDaoService;
+import com.fox.dao.PlanetDaoServiceImpl;
+import com.fox.entity.Planet;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 class PlanetServiceImplTest {
 
@@ -57,6 +56,9 @@ class PlanetServiceImplTest {
                 () -> planetService.create("mars", "Mars")
         );
 
-        assertEquals("Planet id must contain only uppercase Latin letters and digits", exception.getMessage());
+        assertEquals(
+                "Planet id must contain only uppercase Latin letters and digits",
+                exception.getMessage()
+        );
     }
 }

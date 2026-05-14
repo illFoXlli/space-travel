@@ -49,9 +49,13 @@ public class ClientServiceImpl implements ClientService {
         }
 
         String normalizedName = name.trim();
-        if (normalizedName.length() < MIN_NAME_LENGTH || normalizedName.length() > MAX_NAME_LENGTH) {
+        if (normalizedName.length() < MIN_NAME_LENGTH
+                || normalizedName.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(
-                    "Client name length must be between " + MIN_NAME_LENGTH + " and " + MAX_NAME_LENGTH
+                    "Client name length must be between "
+                            + MIN_NAME_LENGTH
+                            + " and "
+                            + MAX_NAME_LENGTH
             );
         }
     }

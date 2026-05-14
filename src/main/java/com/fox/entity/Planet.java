@@ -1,6 +1,9 @@
 package com.fox.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "planet")
@@ -13,7 +16,8 @@ public class Planet {
     @Column(name = "name", length = 500, nullable = false)
     private String name;
 
-    public Planet() {}
+    public Planet() {
+    }
 
     public Planet(String id, String name) {
         this.id = id;
@@ -34,9 +38,9 @@ public class Planet {
 
     @Override
     public String toString() {
-        return "Planet{" +
-               "id='" + id + '\'' +
-               ", name='" + name + '\'' +
-               '}';
+        return "Planet{"
+                + "id='" + id + '\''
+                + ", name='" + name + '\''
+                + '}';
     }
 }

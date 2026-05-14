@@ -3,9 +3,11 @@ name: Java CI with Gradle
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-  test:
+  quality-checks:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,5 +23,11 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Run tests
+      - name: Run unit tests
         run: ./gradlew test
+
+      - name: Run Checkstyle for main sources
+        run: ./gradlew checkstyleMain
+
+      - name: Run Checkstyle for test sources
+        run: ./gradlew checkstyleTest
