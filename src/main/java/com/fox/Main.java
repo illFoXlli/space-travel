@@ -5,12 +5,17 @@ import com.fox.dao.ClientDaoService;
 import com.fox.dao.ClientDaoServiceImpl;
 import com.fox.dao.PlanetDaoService;
 import com.fox.dao.PlanetDaoServiceImpl;
+import com.fox.dao.TicketDaoService;
+import com.fox.dao.TicketDaoServiceImpl;
 import com.fox.entity.Client;
 import com.fox.entity.Planet;
+import com.fox.entity.Ticket;
 import com.fox.service.ClientService;
 import com.fox.service.ClientServiceImpl;
 import com.fox.service.PlanetService;
 import com.fox.service.PlanetServiceImpl;
+import com.fox.service.TicketService;
+import com.fox.service.TicketServiceImpl;
 
 public class Main {
 
@@ -48,7 +53,29 @@ public class Main {
         // UPDATE
         planetService.update("TEST", "Updated Planet");
 
+        planetService.create("MARSX", "Mars X");
+        planetService.create("VENUSX", "Venus X");
+
         // DELETE
         planetService.deleteById("TEST");
+
+        TicketDaoService ticketDaoService = new TicketDaoServiceImpl();
+        TicketService ticketService = new TicketServiceImpl(
+                ticketDaoService,
+                clientDaoService,
+                planetDaoService
+        );
+
+        long ticketClientId = clientService.create("TicketOwner");
+        long ticketId = ticketService.create(ticketClientId, "MARSX", "VENUSX");
+
+        Ticket ticketFromDb = ticketService.getById(ticketId);
+        System.out.println(ticketFromDb);
+
+        ticketService.update(ticketId, ticketClientId, "VENUSX", "MARSX");
+        ticketService.deleteById(ticketId);
+        clientService.deleteById(ticketClientId);
+        planetService.deleteById("MARSX");
+        planetService.deleteById("VENUSX");
     }
 }
