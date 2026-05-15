@@ -1,6 +1,7 @@
 # SpaceTravel
 
-Навчальний Java-проєкт для компанії SpaceTravel. Проєкт демонструє роботу з `Hibernate`, `Flyway` та `H2` для моделювання перевезень пасажирів між планетами.
+Навчальний Java-проєкт для компанії SpaceTravel. Проєкт демонструє роботу з `Hibernate`, `Flyway` та `H2` для
+моделювання перевезень пасажирів між планетами.
 
 ## Реалізовано
 
@@ -9,17 +10,17 @@
 - Міграція `V1__create_db.sql` для створення таблиць `client`, `planet`, `ticket`
 - Міграція `V2__populate_db.sql` для наповнення БД тестовими даними
 - Hibernate-сутності:
-  - `Client`
-  - `Planet`
-  - `Ticket`
+    - `Client`
+    - `Planet`
+    - `Ticket`
 - DAO-рівень:
-  - `ClientDaoService` / `ClientDaoServiceImpl`
-  - `PlanetDaoService` / `PlanetDaoServiceImpl`
-  - `TicketDaoService` / `TicketDaoServiceImpl`
+    - `ClientDaoService` / `ClientDaoServiceImpl`
+    - `PlanetDaoService` / `PlanetDaoServiceImpl`
+    - `TicketDaoService` / `TicketDaoServiceImpl`
 - Service-рівень:
-  - `ClientService` / `ClientServiceImpl`
-  - `PlanetService` / `PlanetServiceImpl`
-  - `TicketService` / `TicketServiceImpl`
+    - `ClientService` / `ClientServiceImpl`
+    - `PlanetService` / `PlanetServiceImpl`
+    - `TicketService` / `TicketServiceImpl`
 - Валідація даних у service-рівні
 - Обробка помилок транзакцій з `rollback()` у DAO-рівні
 - Конфігурація БД через `.env`
@@ -38,14 +39,17 @@
 ## Структура БД
 
 ### `client`
+
 - `id` - `BIGINT`, primary key, auto increment
 - `name` - `VARCHAR(200)`, not null
 
 ### `planet`
+
 - `id` - `VARCHAR(20)`, primary key
 - `name` - `VARCHAR(500)`, not null
 
 ### `ticket`
+
 - `id` - `BIGINT`, primary key, auto increment
 - `created_at` - `TIMESTAMP`, not null
 - `client_id` - foreign key -> `client.id`
@@ -53,10 +57,12 @@
 - `to_planet_id` - foreign key -> `planet.id`
 
 Додаткові обмеження:
+
 - `planet.id` може містити тільки великі латинські літери та цифри
 - `from_planet_id` і `to_planet_id` у `ticket` не можуть бути однаковими
 
 У Java-сутності `Ticket` ці звʼязки описані через Hibernate mappings:
+
 - `Client client`
 - `Planet fromPlanet`
 - `Planet toPlanet`
@@ -75,7 +81,8 @@
 
 ## Налаштування `.env`
 
-Створи локальний `.env` на основі [.env.example](/Users/denysrud/Документы local/Обучения/GoIt/space-travel/.env.example:1).
+Створи локальний `.env` на
+основі [.env.example](/Users/denysrud/Документы local/Обучения/GoIt/space-travel/.env.example:1).
 
 У шаблоні зберігаються тільки назви змінних:
 
@@ -110,6 +117,7 @@ HIBERNATE_HBM2DDL_AUTO=validate
 ```
 
 Тести перевіряють:
+
 - створення, читання, оновлення і видалення `Client`
 - створення, читання, оновлення і видалення `Planet`
 - створення, читання, оновлення і видалення `Ticket`
@@ -133,6 +141,7 @@ HIBERNATE_HBM2DDL_AUTO=validate
 ```
 
 Команда запускає:
+
 - `Spotless`
 - `Checkstyle`
 - юніт-тести
@@ -144,6 +153,7 @@ HIBERNATE_HBM2DDL_AUTO=validate
 ```
 
 Під час запуску:
+
 - Flyway перевіряє та застосовує міграції
 - Hibernate підключається до локальної H2-бази
 - у `Main` створюються DAO та service-обʼєкти, після чого виконується демонстрація CRUD-операцій
@@ -155,6 +165,7 @@ Workflow знаходиться в:
 - [.github/workflows/gradle-tests.yml](/Users/denysrud/Документы local/Обучения/GoIt/space-travel/.github/workflows/gradle-tests.yml:1)
 
 На GitHub запускаються:
+
 - юніт-тести
 - `Checkstyle` для `main`
 - `Checkstyle` для `test`
@@ -162,9 +173,12 @@ Workflow знаходиться в:
 ## Файли конфігурації
 
 - Env-шаблон: [.env.example](/Users/denysrud/Документы local/Обучения/GoIt/space-travel/.env.example:1)
-- Міграції: [src/main/resources/db/migration](/Users/denysrud/Документы local/Обучения/GoIt/space-travel/src/main/resources/db/migration:1)
-- GitHub Actions workflow: [.github/workflows/gradle-tests.yml](/Users/denysrud/Документы local/Обучения/GoIt/space-travel/.github/workflows/gradle-tests.yml:1)
+-
+Міграції: [src/main/resources/db/migration](/Users/denysrud/Документы local/Обучения/GoIt/space-travel/src/main/resources/db/migration:1)
+- GitHub Actions
+  workflow: [.github/workflows/gradle-tests.yml](/Users/denysrud/Документы local/Обучения/GoIt/space-travel/.github/workflows/gradle-tests.yml:1)
 
 ## Репозиторій
 
 [GitHub repository](https://github.com/illFoXlli/space-travel)
+
